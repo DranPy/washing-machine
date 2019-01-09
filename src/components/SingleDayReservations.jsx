@@ -2,9 +2,12 @@ import React from 'react';
 import { Row, Col, Button } from 'reactstrap';
 import { Field } from 'redux-form';
 import _capitalize from 'lodash/capitalize';
+import Select from 'react-select';
+
 import TimePickerWrapper from './TimePickerWrapper';
 
-const SingleDayReservations = ({ fields, meta: { error } }) => {
+const SingleDayReservations = ({ fields, meta: { error }, users }) => {
+
   return [
     <Row key="header">
       <Col>
@@ -18,19 +21,36 @@ const SingleDayReservations = ({ fields, meta: { error } }) => {
           key={`${name}-${index}`}
           className="reservations__single-entry"
         >
-          <Col xs={{ size: 3, offset: 1 }}>
+          <Col xs={{ size: 3 }}>
             <Field
+              className="form-control"
               name={`${name}.start`}
               component={TimePickerWrapper}
             />
           </Col>
-          <Col xs={{ size: 3, offset: 2 }}>
+          <Col xs={{ size: 3 }}>
             <Field
+              className="form-control"
               name={`${name}.end`}
               component={TimePickerWrapper}
             />
           </Col>
-          <Col xs={{ size: 1, offset: 1 }}>
+          <Col xs={{ size: 3 }}>
+            <Field
+              name={`${name}.user`}
+              component={({ input: { value, onChange, onBlur } }) => (
+                <Select
+                  value={value || ''}
+                  onChange={selectedValue => onChange(selectedValue)}
+                  onBlur={() => onBlur(value)}
+                  options={users}
+                  placeholder="Select"
+                />
+              )}
+            />
+          </Col>
+
+          <Col xs={{ size: 2, offset: 1 }}>
             <Button
               onClick={() => {
                 fields.remove(index);

@@ -168,11 +168,15 @@ const validate = (values, form) => {
 };
 
 const Reservations = ({
+  users,
   clearReservations,
   handleSubmit,
   machine,
   saveReservations,
-}) => (
+}) => {
+  console.log(users);
+
+  return (
     <Container className="reservations">
       <Form onSubmit={handleSubmit(saveReservations)}>
         <Row>
@@ -183,6 +187,7 @@ const Reservations = ({
                 key={`single-${day}`}
                 component={SingleDayReservations}
                 name={day}
+                users={users}
               />
             ))}
             <Button color="primary" type="submit">
@@ -203,8 +208,14 @@ const Reservations = ({
       </Form>
     </Container>
   );
+}
+
+const getUserForSelect = users => {
+  return users.map(({ firstName, lastName, id }) => ({ label: `${firstName} ${lastName}`, value: id }));
+};
 
 const mapStateToProps = state => ({
+  users: getUserForSelect(state.users),
   machine: state.machine,
   initialValues: state.machine,
 });

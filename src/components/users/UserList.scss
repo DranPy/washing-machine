@@ -1,0 +1,12 @@
+.user-list {
+  &__item {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+  }
+
+  &__item:last-of-type {
+    border-bottom: none;
+  }
+}
