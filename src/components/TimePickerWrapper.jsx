@@ -5,7 +5,7 @@ const TimePickerWrapper = ({
   input: { onChange, value },
   meta: { error },
 }) => {
-  console.log(error);
+  // console.log(error);
   return (
     <React.Fragment>
       <DatePicker
