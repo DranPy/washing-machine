@@ -21,9 +21,7 @@ const RENDER_TYPE = {
   filed: 1
 };
 
-window.moment = moment;
-
-const isEmptyFields = ({ start, end }) => {
+const isEmptyFields = ({ start, end, user }) => {
   const message = 'Can not be empty';
   const validator = {
     isValid: true,
@@ -38,6 +36,12 @@ const isEmptyFields = ({ start, end }) => {
   if (end == null) {
     validator.isValid = false;
     validator.error.end = message;
+  }
+  debugger;
+
+  if (user == null) {
+    validator.isValid = false;
+    validator.error.user = message;
   }
 
   return validator;
@@ -173,10 +177,7 @@ const Reservations = ({
   handleSubmit,
   machine,
   saveReservations,
-}) => {
-  console.log(users);
-
-  return (
+}) => (
     <Container className="reservations">
       <Form onSubmit={handleSubmit(saveReservations)}>
         <Row>
@@ -192,7 +193,7 @@ const Reservations = ({
             ))}
             <Button color="primary" type="submit">
               Save data
-          </Button>
+            </Button>
           </Col>
           <Col xs={4}>
             <ReactJson src={machine} name="machineStoreState" />
@@ -208,7 +209,7 @@ const Reservations = ({
       </Form>
     </Container>
   );
-}
+
 
 const getUserForSelect = users => {
   return users.map(({ firstName, lastName, id }) => ({ label: `${firstName} ${lastName}`, value: id }));

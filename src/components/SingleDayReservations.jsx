@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Row, Col, Button } from 'reactstrap';
 import { Field } from 'redux-form';
 import _capitalize from 'lodash/capitalize';
@@ -38,14 +38,17 @@ const SingleDayReservations = ({ fields, meta: { error }, users }) => {
           <Col xs={{ size: 3 }}>
             <Field
               name={`${name}.user`}
-              component={({ input: { value, onChange, onBlur } }) => (
-                <Select
-                  value={value || ''}
-                  onChange={selectedValue => onChange(selectedValue)}
-                  onBlur={() => onBlur(value)}
-                  options={users}
-                  placeholder="Select"
-                />
+              component={({ input: { value, onChange, onBlur }, meta: { error } }) => (
+                <Fragment>
+                  <Select
+                    value={value || ''}
+                    onChange={selectedValue => onChange(selectedValue)}
+                    onBlur={() => onBlur(value)}
+                    options={users}
+                    placeholder="Select"
+                  />
+                  <span className="reservations__error">{error}</span>
+                </Fragment>
               )}
             />
           </Col>
