@@ -37,8 +37,6 @@ const isEmptyFields = ({ start, end, user }) => {
     validator.isValid = false;
     validator.error.end = message;
   }
-  debugger;
-
   if (user == null) {
     validator.isValid = false;
     validator.error.user = message;
