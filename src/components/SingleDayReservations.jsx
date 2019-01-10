@@ -35,7 +35,7 @@ const SingleDayReservations = ({ fields, meta: { error }, users }) => {
               component={TimePickerWrapper}
             />
           </Col>
-          <Col xs={{ size: 3 }}>
+          <Col xs={{ size: 4 }}>
             <Field
               name={`${name}.user`}
               component={({ input: { value, onChange, onBlur }, meta: { error } }) => (
@@ -53,7 +53,7 @@ const SingleDayReservations = ({ fields, meta: { error }, users }) => {
             />
           </Col>
 
-          <Col xs={{ size: 2, offset: 1 }}>
+          <Col xs={{ size: 2 }}>
             <Button
               onClick={() => {
                 fields.remove(index);
@@ -68,7 +68,7 @@ const SingleDayReservations = ({ fields, meta: { error }, users }) => {
       ))}
     </Row>,
     <Row key="footer">
-      <Col xs={{ size: 3, offset: 6 }}>
+      <Col xs={{ size: 3 }} className="pb-4">
         <Button
           onClick={() => {
             fields.push({ start: null, end: null });
